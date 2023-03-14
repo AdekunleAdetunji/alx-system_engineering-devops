@@ -1,0 +1,2 @@
+#!/bin/bash
+printenv PATH | tr ":" " " | wc -w
