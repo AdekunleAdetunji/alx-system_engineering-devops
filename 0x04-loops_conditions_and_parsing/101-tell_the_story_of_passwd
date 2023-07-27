@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# A Bash script that displays the content of the file /etc/passwd, using the
+# while loop + IFS.
+
+# Format: The user USERNAME is part of the GROUP_ID gang, lives in
+# HOME_DIRECTORY and rides COMMAND/SHELL. USER ID's place is protected by the
+# passcode PASSWORD, more info about the user here: USER ID INFO
+
+exec 3< /etc/passwd
+
+while IFS=":" read -u 3 -r U_NAME PSWD U_ID G_ID UID_INFO HD CMD;
+do
+	echo "The user $U_NAME is part of the $G_ID gang, lives in $HD and\
+ rides $CMD. $U_ID's place is protected by the passcode $PSWD, more info about\
+ the user here: $UID_INFO"
+done;
+: 3<&_
