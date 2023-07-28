@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Bash script that displays To infinity and beyond indefinitely.
+
+# Requirements:
+# In between each iteration of the loop, add a sleep 2
+
+echo "$$" > /var/run/myscript.pid
+trap "echo Y U no love me?!" SIGINT
+trap "echo I hate the kill command; rm -r /var/run/myscript.pid; exit" SIGTERM
+trap "echo I hate the kill command; rm -r /var/run/myscript.pid; exit" SIGQUIT
+while true;
+do
+	echo "To infinity and beyond"
+	sleep 2s
+done;
