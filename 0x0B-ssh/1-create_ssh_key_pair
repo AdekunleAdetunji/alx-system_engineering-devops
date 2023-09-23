@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script creates a new 4096 bit ssh key pair stored in the school directory
+# with the passphrase of betty
+ssh-keygen -b 4096 -f school -N betty
