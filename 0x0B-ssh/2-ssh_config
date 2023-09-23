@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# A script containing configuration file to use the private_key ~/.ssh/school
+# and also refuse to authenticate using a password
+Host remote-server
+     PasswordAuthentication no
+IdentityFile ~/.ssh/school
