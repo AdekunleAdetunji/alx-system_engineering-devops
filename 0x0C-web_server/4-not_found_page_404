@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
-#Create a new Nginx with new server
-
+# Script that configures a new Ubuntu machine
 if ! nginx -v; then
-sudo apt-get update
-sudo apt-get install -y nginx
+apt-get update
+apt-get install -y nginx
 fi
 
-# setup home
-echo "Hello World!" | sudo tee /var/www/html/index.html
-
-# setup redirect
-replacement="server_name _;\n\trewrite ^\/redirect_me \/ permanent;"
-sudo sed -i "s/server_name _;/$replacement/" /etc/nginx/sites-enabled/default
+echo "Hello World!" > /var/www/html/index.html
+str="server_name _;\n\tlocation \/redirect_me {\n\t\t return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}"
+sed -i "s/server_name _;/$str/" /etc/nginx/sites-available/default
 
 # setting up 404
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
-replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sudo sed -i "s/listen 80 default_server;/$replacement/" /etc/nginx/sites-enabled/default
+replacement="\\
+\terror_page 404 /404.html;\\
+\tlocation = /404.html {\\
+\t\troot /var/www/html;\\
+\t\tinternal;\\
+\t}"
+sudo sed -i '/listen 80 default_server;/a '"$replacement"'' /etc/nginx/sites-available/default
 
 ufw allow 'NGINX Full'
 # restart the server
