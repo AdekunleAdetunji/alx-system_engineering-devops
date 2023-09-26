@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Add a simple webpage when viewing the website
+
+sudo apt update -y
+sudo apt install nginx -y
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx restart
