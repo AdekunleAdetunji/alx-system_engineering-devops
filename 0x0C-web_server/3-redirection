@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Script that configures a new Ubuntu machine
+if ! nginx -v; then
+sudo apt-get update
+sudo apt-get install -y nginx
+fi
+
+echo "Hello World!" > /var/www/html/index.html
+replacement="server_name _;\n\trewrite ^\/redirect_me \/ permanent;"
+sudo sed -i "s/server_name _;/$replacement/" /etc/nginx/sites-enabled/default
+
+ufw allow 'NGINX Full'
+
+sudo service nginx restart
