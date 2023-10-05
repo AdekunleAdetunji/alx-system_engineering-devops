@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A script that debugs a nginx default website config file to listen to incoming requests on port 80
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
