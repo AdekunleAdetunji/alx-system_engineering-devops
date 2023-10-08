@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+# This script gets information about the domain name of a server using the dig command
+
+info () {
+    if [ -z "$2" ]
+    then
+	arr="www lb-01 web-01 web-02"
+	for i in $arr
+	do
+	    dig "$i.$1" | grep -A4 'ANSWER SECTION:'\
+		| awk 'NR== 2 {print "The subdomain", $1, "is a", $4,"record and points to", $5  }'
+	done
+    else
+	dig "$2.$1" | grep -A4 'ANSWER SECTION:'\
+		| awk -v arg1="$2" 'NR==2 {print "The subdomain", arg1, "is a", $4,"record and points to", $5}'
+    fi
+}
+
+info "$1" "$2"
