@@ -8,11 +8,11 @@ info () {
 	for i in $arr
 	do
 	    dig "$i.$1" | grep -A4 'ANSWER SECTION:'\
-		| awk 'NR== 2 {print "The subdomain", $1, "is a", $4,"record and points to", $5  }'
+		| awk 'NR== 2 {print "The subdomain", subdomain, "is a", $4,"record and points to", $5  }' subdomain="$i"
 	done
     else
 	dig "$2.$1" | grep -A4 'ANSWER SECTION:'\
-		| awk -v arg1="$2" 'NR==2 {print "The subdomain", arg1, "is a", $4,"record and points to", $5}'
+		| awk 'NR==2 {print "The subdomain", arg1, "is a", $4,"record and points to", $5}' arg1="$2"
     fi
 }
 
