@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# a script that start nginx with the nginx user after changing the default port to 8080 and user to nginx
+sudo sed -i "s:#user www-data;:user nginx;:" /etc/nginx/nginx.conf
+chmod 644 /etc/nginx/nginx.conf
+src="listen 80 default_server;\n\tlisten \[::\]:80 default_server ipv6only=on;"
+dest="listen 8080 default_server;\n\tlisten \[::\]:8080 default_server ipv6only=on;"
+sudo sed -z -i "s@$src@$dest@g" /etc/nginx/sites-available/default
+sudo -u nginx service nginx start
