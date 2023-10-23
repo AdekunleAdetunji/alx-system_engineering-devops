@@ -23,11 +23,11 @@ def emps_to_json():
     output = {}
     for employee in employees:
         emp_id = employee["id"]
-        output.update({emp_id: [{"username": employee['username'],
-                                 "task": todo['title'],
-                                 "completed": todo['completed']}
+        output.update({emp_id: [{"username": employee.get('username'),
+                                 "task": todo.get('title'),
+                                 "completed": todo.get('completed')}
                                 for todo in todos
-                                if todo["userId"] == emp_id]})
+                                if todo.get("userId") == emp_id]})
     with open("todo_all_employees.json", "w", newline="") as fileObj:
         json.dump(output, fileObj)
 

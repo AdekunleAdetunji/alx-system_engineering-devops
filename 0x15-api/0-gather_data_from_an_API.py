@@ -17,8 +17,8 @@ def display_info(emp_id):
     employeeResp = requests.get(employeeUrl)
     todoResp = requests.get(todoUrl)
     employee, todos = employeeResp.json(), todoResp.json()
-    titles = [todo["title"] for todo in todos if todo["completed"]]
-    header = f"Employee {employee[0]['name']} is done with"\
+    titles = [todo.get("title") for todo in todos if todo.get("completed")]
+    header = f"Employee {employee[0].get('name')} is done with"\
         f"tasks({len(titles)}/{len(todos)}):"
     print(header)
     for title in titles:

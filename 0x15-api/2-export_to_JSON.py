@@ -20,9 +20,9 @@ def emp_to_json(emp_id):
     todoResp = requests.get(todoUrl)
     employee, todos = employeeResp.json(), todoResp.json()
     with open(f"{emp_id}.json", "w", newline="") as fileObj:
-        output = {emp_id: [{"task": todo['title'],
-                            "completed": todo['completed'],
-                            "username": employee[0]['username']}
+        output = {emp_id: [{"task": todo.get('title'),
+                            "completed": todo.get('completed'),
+                            "username": employee[0].get('username')}
                            for todo in todos]}
         json.dump(output, fileObj)
 

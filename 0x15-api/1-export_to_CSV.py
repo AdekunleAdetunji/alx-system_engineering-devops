@@ -23,9 +23,9 @@ def emp_to_csv(emp_id):
         writerObj = csv.writer(fileObj, quoting=csv.QUOTE_ALL)
         for todo in todos:
             writerObj.writerow([emp_id,
-                                employee[0]["username"],
-                                todo["completed"],
-                                todo["title"]])
+                                employee[0].get("username"),
+                                todo.get("completed"),
+                                todo.get("title")])
 
 
 if __name__ == "__main__":
