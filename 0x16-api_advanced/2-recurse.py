@@ -4,9 +4,6 @@ This module contains a recursive function that returns the list of all hot
 articles for a given subreddit
 """
 import requests
-import sys
-
-subreddit = sys.argv[1]
 
 
 def recurse(subreddit, hot_list=[], count=0, after=""):
