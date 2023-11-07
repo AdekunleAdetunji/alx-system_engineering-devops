@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
 This module contains a function used to obtain the number of subscribers
 in a subreddit
