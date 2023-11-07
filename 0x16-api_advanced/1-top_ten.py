@@ -4,10 +4,6 @@ This module contains a function used to obtain the top ten hot posts
 in a subreddit
 """
 import requests
-import sys
-
-
-subreddit = sys.argv[1]
 
 
 def top_ten(subreddit):
