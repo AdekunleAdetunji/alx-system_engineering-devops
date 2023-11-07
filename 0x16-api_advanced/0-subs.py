@@ -4,10 +4,6 @@ This module contains a function used to obtain the number of subscribers
 in a subreddit
 """
 import requests
-import sys
-
-
-subreddit = sys.argv[1]
 
 
 def number_of_subscribers(subreddit):
