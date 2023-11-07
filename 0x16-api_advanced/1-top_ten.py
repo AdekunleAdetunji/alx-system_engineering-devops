@@ -16,6 +16,7 @@ def top_ten(subreddit):
     resObj = requests.get(url=url, headers=headers,
                           params=payload, allow_redirects=False)
     if resObj.status_code != 200:
+        print(None)
         return 0
     data = resObj.json().get("data").get("children")
     for datum in data:
