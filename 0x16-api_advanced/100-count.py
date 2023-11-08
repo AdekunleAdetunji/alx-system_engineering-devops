@@ -11,9 +11,10 @@ def count_words(subreddit, word_list, after="", dic={}):
     recursive function that returns frequency of certain words in all titles of
     articles linked to a subreddit
     """
+    word_list = set([word.lower() for word in word_list])
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
 
-    headers = {"user-agent": "hsld"}
+    headers = {"user-agent": "shdh"}
     payload = {"after": after}
     response = requests.get(url, headers=headers,
                             params=payload, allow_redirects=False)
@@ -24,7 +25,7 @@ def count_words(subreddit, word_list, after="", dic={}):
     for child in data.get("children"):
         title_words = child.get("data").get("title").lower().split()
         for word in word_list:
-            dic[word] = dic.get(word, 0) + title_words.count(word.lower())
+            dic[word] = dic.get(word, 0) + title_words.count(word)
     after = data.get("after")
 
     if after:
